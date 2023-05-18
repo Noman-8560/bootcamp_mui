@@ -18,6 +18,32 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+// import { 
+//   Box,
+//   MuiDrawer,
+//   MuiAppBar,
+//   Toolbar,
+//   List,
+//   CssBaseline,
+//   Typography,
+//   Divider,
+//   IconButton,
+//   ListItem,
+//   ListItemButton,
+//   ListItemIcon,
+//   ListItemText
+// } from '@mui/material';
+
+// import {
+//   MenuIcon,
+//   ChevronLeftIcon,
+//   ChevronRightIcon,
+//   InboxIcon,
+//   MailIcon
+// } from '@mui/icons-material';
+import Layouts from '../../pages/Layouts'
+
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -178,7 +204,7 @@ export default function MiniDrawer() {
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        {/* <Layout /> */}
+        <Layouts />
       </Box>
     </Box>
   );
