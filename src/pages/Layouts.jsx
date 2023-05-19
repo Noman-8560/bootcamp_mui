@@ -6,8 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Container from '@mui/material/Container';
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 export default function MediaCard() {
   const cardData = [
@@ -37,17 +36,14 @@ export default function MediaCard() {
         {card.content}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <CardActions sx={{ marginBottom: "5px" }} style={{justifyContent: 'center'}}>
+      <Button variant="contained"  startIcon={<ShoppingCartIcon />}>Add to Cart</Button>
       </CardActions>
       </Card>
     </Grid>
     ))}
 
   </Grid>
-
-
   </>
   );
 }
