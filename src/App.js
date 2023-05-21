@@ -1,11 +1,13 @@
 import './App.css';
-import Leftbar from './components/mui/Leftbar'
+import Appbar from './components/mui/Appbar'
+import Layouts from './pages/Layouts'
 
 
 function App() {
   return (
     <div className="App">
-      <Leftbar />
+      <Appbar />
+      <Layouts />
     </div>
   );
 }
