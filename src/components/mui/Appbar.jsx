@@ -11,13 +11,18 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import LoginIcon from '@mui/icons-material/Login';
-import SendIcon from "@mui/icons-material/Send";
+import LoginIcon from "@mui/icons-material/Login";
 import Stack from "@mui/material/Stack";
+import { Link } from "react-router-dom";
 
-const pages = ["Home", "Products", "About", "Contact"];
+const pages = [
+<Link to="/"><Button sx={{color:'black'}}>Home</Button></Link>,
+<Link to="/">Products</Link>,
+<Link to="/">About</Link>,
+<Link to="/">Contact</Link>];
+
 const settings = ["Logout"];
 
 function ResponsiveAppBar() {
@@ -64,7 +69,13 @@ function ResponsiveAppBar() {
             E-COM
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }, color:"black" }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "flex", md: "none" },
+              color: "black",
+            }}
+          >
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -106,7 +117,10 @@ function ResponsiveAppBar() {
                 >
                   Delete
                 </Button>
-                <Button variant="contained" endIcon={<ShoppingCartIcon />}>
+                <Button
+                  variant="contained"
+                  endIcon={<ShoppingCartOutlinedIcon />}
+                >
                   Send
                 </Button>
               </Stack>
@@ -134,8 +148,11 @@ function ResponsiveAppBar() {
             E-COM
           </Typography>
           <Box
-            sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "center" }}
-            
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+            }}
           >
             {pages.map((page) => (
               <Button
@@ -154,12 +171,24 @@ function ResponsiveAppBar() {
               spacing={2}
               sx={{ display: { xs: "none", sm: "block" }, marginRight: "2rem" }}
             >
-              <Button variant="outlined" sx={{color:"black"}} startIcon={<LoginIcon />}>
-                Login
-              </Button>
-              <Button variant="outlined" sx={{color:"black"}} startIcon={<ShoppingCartIcon />}>
-                Cart
-              </Button>
+              <Link to="/login">
+                <Button
+                  variant="outlined"
+                  sx={{ color: "black", borderColor: "black" }}
+                  startIcon={<LoginIcon />}
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link>
+                <Button
+                  variant="outlined"
+                  sx={{ color: "black", borderColor: "black" }}
+                  startIcon={<ShoppingCartOutlinedIcon />}
+                >
+                  Cart
+                </Button>
+              </Link>
             </Stack>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

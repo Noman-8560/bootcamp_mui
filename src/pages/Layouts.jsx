@@ -1,20 +1,18 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
-import CameraIcon from "@mui/icons-material/PhotoCamera";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Appbar from '../components/mui/Appbar';
 
 function Copyright() {
   return (
@@ -66,6 +64,8 @@ export default function Album() {
     },
   ];
   return (
+    <>
+    <Appbar />
     <ThemeProvider theme={defaultTheme}>
       <main>
         {/* Hero unit */}
@@ -134,9 +134,14 @@ export default function Album() {
                     </Typography>
                     <Typography>{card.content}</Typography>
                   </CardContent>
-                  <CardActions>
-                    <Button size="small">View</Button>
-                    <Button size="small">Edit</Button>
+                  <CardActions sx={{ justifyContent: "center", mb:'5px'}}>
+                    <Button
+                      variant="outlined"
+                      sx={{ color: "black", borderColor: "black" }}
+                      startIcon={<ShoppingCartOutlinedIcon />}
+                    >
+                      Add to Cart
+                    </Button>
                   </CardActions>
                 </Card>
               </Grid>
@@ -162,5 +167,6 @@ export default function Album() {
       </Box>
       {/* End footer */}
     </ThemeProvider>
+    </>
   );
 }

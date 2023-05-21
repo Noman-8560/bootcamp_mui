@@ -1,14 +1,10 @@
 import './App.css';
-import Appbar from './components/mui/Appbar'
-import Layouts from './pages/Layouts'
+import Routes from './Router'
 
 
 function App() {
   return (
-    <div className="App">
-      <Appbar />
-      <Layouts />
-    </div>
+<Routes />
   );
 }
 
