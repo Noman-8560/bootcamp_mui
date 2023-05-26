@@ -11,7 +11,6 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Appbar from '../components/mui/Appbar';
 import { Link } from "react-router-dom";
 
 
@@ -44,7 +43,6 @@ export default function SignUp() {
 
   return (
     <>
-    <Appbar />
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />

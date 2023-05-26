@@ -24,7 +24,7 @@ const pages = [
 
 const settings = ["Logout"];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({ cartItemCount }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -124,7 +124,7 @@ function ResponsiveAppBar() {
                   sx={{ color: "black", borderColor: "black" }}
                   startIcon={<ShoppingCartOutlinedIcon />}
                 >
-                  Cart
+                  Cart ({cartItemCount})
                 </Button>
               </Link>
               </Stack>
@@ -191,7 +191,7 @@ function ResponsiveAppBar() {
                   sx={{ color: "black", borderColor: "black" }}
                   startIcon={<ShoppingCartOutlinedIcon />}
                 >
-                  Cart
+                  Cart ({cartItemCount})
                 </Button>
               </Link>
             </Stack>

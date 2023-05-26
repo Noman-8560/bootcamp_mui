@@ -11,7 +11,6 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Appbar from '../components/mui/Appbar';
 import { Link } from "react-router-dom";
 
 
@@ -45,7 +44,6 @@ export default function SignIn() {
 
   return (
     <>
-    <Appbar />
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
