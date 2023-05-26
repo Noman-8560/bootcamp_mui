@@ -18,10 +18,9 @@ import Stack from "@mui/material/Stack";
 import { Link } from "react-router-dom";
 
 const pages = [
-<Link to="/"><Button sx={{color:'black'}}>Home</Button></Link>,
-<Link to="/">Products</Link>,
-<Link to="/">About</Link>,
-<Link to="/">Contact</Link>];
+<Link to="/" style={{ textDecoration: 'none', color:'black'}}>Home</Link>,
+<Link to="/about" style={{ textDecoration: 'none', color:'black'}}>About</Link>,
+<Link to="/" style={{ textDecoration: 'none', color:'black'}}>Contact</Link>];
 
 const settings = ["Logout"];
 
@@ -110,19 +109,24 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
               <Stack direction="row" spacing={2} sx={{ border: 1 }}>
+              <Link to="/login">
                 <Button
                   variant="outlined"
+                  sx={{ color: "black", borderColor: "black" }}
                   startIcon={<LoginIcon />}
-                  color="error"
                 >
-                  Delete
+                  Login
                 </Button>
+              </Link>
+              <Link to="/cart">
                 <Button
-                  variant="contained"
-                  endIcon={<ShoppingCartOutlinedIcon />}
+                  variant="outlined"
+                  sx={{ color: "black", borderColor: "black" }}
+                  startIcon={<ShoppingCartOutlinedIcon />}
                 >
-                  Send
+                  Cart
                 </Button>
+              </Link>
               </Stack>
             </Menu>
           </Box>
@@ -158,7 +162,8 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block" }}
+                sx={{ my: 2, color: "black", display: "block"}}
+                style={{background:"transparent"}}
               >
                 {page}
               </Button>
@@ -180,7 +185,7 @@ function ResponsiveAppBar() {
                   Login
                 </Button>
               </Link>
-              <Link>
+              <Link to="/cart">
                 <Button
                   variant="outlined"
                   sx={{ color: "black", borderColor: "black" }}
