@@ -9,9 +9,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 export default function Cart({ items, onAdd, onRemove }) {
-  const calculateTotalCost = () => {
-    return items.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
+//   const calculateTotalCost = () => {
+//     return items.reduce((total, item) => total + item.price * item.quantity, 0);
+    
+//   };
+
   return (
     <Container>
       <TableContainer component={Paper} style={{marginTop:"3rem"}}>

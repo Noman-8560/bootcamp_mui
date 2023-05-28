@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import Card from "@mui/material/Card";
@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import TextField from "@mui/material/TextField";
 
 function Copyright() {
   return (
@@ -30,6 +31,8 @@ function Copyright() {
 const defaultTheme = createTheme();
 
 export default function Album({ products, onAddToCart }) {
+  const [search, setSearch] = useState("");
+
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
@@ -75,49 +78,61 @@ export default function Album({ products, onAddToCart }) {
           </Box>
 
           <Container sx={{ py: 8 }} maxWidth="lg">
+            <Box sx={{ textAlign: "center" }}>
+              <TextField
+                sx={{ marginBottom: "2rem", width: "50%" }}
+                fullWidth
+                label="Search Product"
+                id="fullWidth"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Box>
+
             {/* End hero unit */}
             <Grid container spacing={4}>
-              {products.map((product) => (
-                <Grid item key={product} xs={12} sm={6} md={4}>
-                  <Card
-                    sx={{
-                      height: "100%",
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <CardMedia
-                      component="div"
+              {products
+                .filter((product) => {
+                  return search.toLowerCase() === ""
+                    ? product
+                    : product.title.toLowerCase().includes(search);
+                })
+                .map((product) => (
+                  <Grid item key={product} xs={12} sm={6} md={4}>
+                    <Card
                       sx={{
-                        // 16:9
-                        pt: "56.25%",
+                        height: "100%",
+                        display: "flex",
+                        flexDirection: "column",
                       }}
-                      image={product.imgs}
-                    />
-                    <CardContent sx={{ flexGrow: 1 }}>
-                      <div style={{ display: "flex" }}>
+                    >
+                      <CardMedia
+                        component="div"
+                        sx={{
+                          // 16:9
+                          pt: "56.25%",
+                        }}
+                        image={product.imgs}
+                      />
+                      <CardContent sx={{ flexGrow: 1 }}>
                         <Typography gutterBottom variant="h5" component="h2">
                           {product.title}
                         </Typography>
-                        <Typography gutterBottom variant="h5" component="h5" style={{textAlign:"end"}}>
-                          {product.price}
-                        </Typography>
-                      </div>
-                      <Typography>{product.content}</Typography>
-                    </CardContent>
-                    <CardActions sx={{ justifyContent: "center", mb: "5px" }}>
-                      <Button
-                        variant="outlined"
-                        sx={{ color: "black", borderColor: "black" }}
-                        startIcon={<ShoppingCartOutlinedIcon />}
-                        onClick={() => onAddToCart(product)}
-                      >
-                        Add to Cart
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              ))}
+                        <Typography gutterBottom>{product.price}</Typography>
+                        <Typography>{product.content}</Typography>
+                      </CardContent>
+                      <CardActions sx={{ justifyContent: "center", mb: "5px" }}>
+                        <Button
+                          variant="outlined"
+                          sx={{ color: "black", borderColor: "black" }}
+                          startIcon={<ShoppingCartOutlinedIcon />}
+                          onClick={() => onAddToCart(product)}
+                        >
+                          Add to Cart
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                ))}
             </Grid>
           </Container>
         </main>
