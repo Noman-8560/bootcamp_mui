@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
+import Contact from "./pages/Contact";
 import Appbar from "./components/mui/Appbar";
 
 function App() {
@@ -99,6 +100,7 @@ function App() {
           <Route path="/about" element={<About />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/contact" element={<Contact />}></Route>
           <Route
             path="/cart"
             element={

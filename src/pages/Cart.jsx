@@ -9,14 +9,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 export default function Cart({ items, onAdd, onRemove }) {
-//   const calculateTotalCost = () => {
-//     return items.reduce((total, item) => total + item.price * item.quantity, 0);
-    
-//   };
+  //   const calculateTotalCost = () => {
+  //     return items.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  //   };
 
   return (
     <Container>
-      <TableContainer component={Paper} style={{marginTop:"3rem"}}>
+      <TableContainer component={Paper} style={{ marginTop: "3rem" }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -28,30 +28,26 @@ export default function Cart({ items, onAdd, onRemove }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map((item) => (
-              <TableRow key={item.id}>
-                <TableCell component="th" scope="row">
-                  <img src={item.imgs} style={{ height: "50px" }} alt="" />
-                </TableCell>
-                <TableCell>{item.title}</TableCell>
-                <TableCell>{item.price}</TableCell>
-                <TableCell>
-                  
-                  <button onClick={() => onAdd(item)}>+</button>
-                  {" "}
-                  {item.quantity}
-                  {" "}
-                  <button onClick={() => onRemove(item)}>-</button>
-                </TableCell>
-                <TableCell>{item.price * item.quantity}</TableCell>
-              </TableRow>
-              
-            ))}
+            {items.map((item) =>
+              item.quantity > 0 ? (
+                <TableRow key={item.id}>
+                  <TableCell component="th" scope="row">
+                    <img src={item.imgs} style={{ height: "50px" }} alt="" />
+                  </TableCell>
+                  <TableCell>{item.title}</TableCell>
+                  <TableCell>{item.price}</TableCell>
+                  <TableCell>
+                    <button onClick={() => onRemove(item)}>-</button>{" "}
+                    {item.quantity}{" "}
+                    <button onClick={() => onAdd(item)}>+</button>
+                  </TableCell>
+                  <TableCell>{item.price * item.quantity}</TableCell>
+                </TableRow>
+              ) : null
+            )}
           </TableBody>
         </Table>
       </TableContainer>
     </Container>
   );
 }
-
-

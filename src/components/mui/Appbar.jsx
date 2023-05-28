@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 const pages = [
 <Link to="/" style={{ textDecoration: 'none', color:'black'}}>Home</Link>,
 <Link to="/about" style={{ textDecoration: 'none', color:'black'}}>About</Link>,
-<Link to="/" style={{ textDecoration: 'none', color:'black'}}>Contact</Link>];
+<Link to="/contact" style={{ textDecoration: 'none', color:'black'}}>Contact</Link>];
 
 const settings = ["Logout"];
 

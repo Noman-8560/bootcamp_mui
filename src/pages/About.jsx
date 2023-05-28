@@ -1,9 +1,73 @@
-import React from 'react'
+import React from "react";
+import { Container, Typography, Grid, Box, Link } from "@mui/material";
 
-export default function About() {
+function Copyright() {
   return (
-    <>
-    <h1>About</h1>
-    </>
-  )
+    <Typography variant="body2" color="text.secondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
 }
+
+const AboutPage = () => {
+  return (
+    <Container>
+      <Grid container spacing={3} style={{ marginTop: "3rem" }}>
+        {/* Content */}
+        <Grid item xs={12} md={6}>
+          <Box marginBottom={3}>
+            <Typography variant="body1">
+              Welcome to our eCommerce store! We strive to provide high-quality
+              products and exceptional customer service.
+            </Typography>
+            <Typography variant="body1">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
+              Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
+              Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris
+              massa.
+            </Typography>
+          </Box>
+        </Grid>
+
+        {/* Image */}
+        <Grid item xs={12} md={6}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            marginBottom={3}
+          >
+            <img
+              src="https://t4.ftcdn.net/jpg/03/20/46/13/360_F_320461388_5Snqf6f2tRIqiWlaIzNWrCUm1Ocaqhfm.jpg"
+              alt="About"
+              style={{ width: "100%", height: "auto", borderRadius: 8 }}
+            />
+          </Box>
+        </Grid>
+      </Grid>
+      {/* Footer */}
+      <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom>
+          Footer
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="text.secondary"
+          component="p"
+        >
+          Something here to give the footer a purpose!
+        </Typography>
+        <Copyright />
+      </Box>
+    </Container>
+  );
+};
+
+export default AboutPage;
