@@ -38,7 +38,10 @@ export default function Album({ products, onAddToCart }) {
       <ThemeProvider theme={defaultTheme}>
         <main>
           {/* Hero unit */}
-          <Box
+          <img src="https://static.vecteezy.com/system/resources/previews/004/299/835/original/online-shopping-on-phone-buy-sell-business-digital-web-banner-application-money-advertising-payment-ecommerce-illustration-search-free-vector.jpg"
+          width="100%"
+          />
+          {/* <Box
             sx={{
               bgcolor: "background.paper",
               pt: 8,
@@ -75,7 +78,7 @@ export default function Album({ products, onAddToCart }) {
                 <Button variant="outlined">Secondary action</Button>
               </Stack>
             </Container>
-          </Box>
+          </Box> */}
 
           <Container sx={{ py: 8 }} maxWidth="lg">
             <Box sx={{ textAlign: "center" }}>
