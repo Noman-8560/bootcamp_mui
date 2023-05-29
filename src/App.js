@@ -9,6 +9,8 @@ import Cart from "./pages/Cart";
 import Contact from "./pages/Contact";
 import Appbar from "./components/mui/Appbar";
 import Details from "./pages/Details";
+import Admins from './pages/Admins';
+
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -103,6 +105,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/details" element={<Details />}></Route>
+          <Route path="/admin/addproduct" element={<Admins />}></Route>
           <Route
             path="/cart"
             element={

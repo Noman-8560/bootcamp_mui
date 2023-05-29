@@ -19,7 +19,7 @@ function Copyright(props) {
       align="center"
       {...props}
     >
-      {"Copyright © "}
+      {"Copyright © E-COM "}
       <Link color="inherit" to="/">
         E-COM
       </Link>{" "}
@@ -129,7 +129,7 @@ export default function SignUp() {
               >
                 Sign Up
               </Button>
-              <Grid container justifyContent="flex-end">
+              <Grid container justifyContent="center">
                 <Grid item>
                   <Link to="/login" variant="body2">
                     Already have an account? Sign in
