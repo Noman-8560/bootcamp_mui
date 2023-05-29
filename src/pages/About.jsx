@@ -5,8 +5,8 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+      <Link color="inherit" to="/">
+        E-COM{" "}
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -20,7 +20,7 @@ const AboutPage = () => {
       <Grid container spacing={3} style={{ marginTop: "3rem" }}>
         {/* Content */}
         <Grid item xs={12} md={6}>
-          <Box marginBottom={3}>
+          <Box marginBottom={3} marginTop={5}>
             <Typography variant="body1">
               Welcome to our eCommerce store! We strive to provide high-quality
               products and exceptional customer service.
@@ -53,17 +53,6 @@ const AboutPage = () => {
       </Grid>
       {/* Footer */}
       <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
         <Copyright />
       </Box>
     </Container>
