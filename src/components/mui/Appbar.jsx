@@ -18,9 +18,16 @@ import Stack from "@mui/material/Stack";
 import { Link } from "react-router-dom";
 
 const pages = [
-<Link to="/" style={{ textDecoration: 'none', color:'black'}}>Home</Link>,
-<Link to="/about" style={{ textDecoration: 'none', color:'black'}}>About</Link>,
-<Link to="/contact" style={{ textDecoration: 'none', color:'black'}}>Contact</Link>];
+  <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+    Home
+  </Link>,
+  <Link to="/about" style={{ textDecoration: "none", color: "black" }}>
+    About
+  </Link>,
+  <Link to="/contact" style={{ textDecoration: "none", color: "black" }}>
+    Contact
+  </Link>,
+];
 
 const settings = ["Logout"];
 
@@ -109,24 +116,24 @@ function ResponsiveAppBar({ cartItemCount }) {
                 </MenuItem>
               ))}
               <Stack direction="row" spacing={2} sx={{ border: 1 }}>
-              <Link to="/login">
-                <Button
-                  variant="outlined"
-                  sx={{ color: "black", borderColor: "black" }}
-                  startIcon={<LoginIcon />}
-                >
-                  Login
-                </Button>
-              </Link>
-              <Link to="/cart">
-                <Button
-                  variant="outlined"
-                  sx={{ color: "black", borderColor: "black" }}
-                  startIcon={<ShoppingCartOutlinedIcon />}
-                >
-                  Cart ({cartItemCount})
-                </Button>
-              </Link>
+                <Link to="/login">
+                  <Button
+                    variant="outlined"
+                    sx={{ color: "black", borderColor: "black" }}
+                    startIcon={<LoginIcon />}
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/cart">
+                  <Button
+                    variant="outlined"
+                    sx={{ color: "black", borderColor: "black" }}
+                    startIcon={<ShoppingCartOutlinedIcon />}
+                  >
+                    Cart ({cartItemCount})
+                  </Button>
+                </Link>
               </Stack>
             </Menu>
           </Box>
@@ -162,8 +169,8 @@ function ResponsiveAppBar({ cartItemCount }) {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "black", display: "block"}}
-                style={{background:"transparent"}}
+                sx={{ my: 2, color: "black", display: "block" }}
+                style={{ background: "transparent" }}
               >
                 {page}
               </Button>
@@ -176,15 +183,6 @@ function ResponsiveAppBar({ cartItemCount }) {
               spacing={2}
               sx={{ display: { xs: "none", sm: "block" }, marginRight: "2rem" }}
             >
-              <Link to="/login">
-                <Button
-                  variant="outlined"
-                  sx={{ color: "black", borderColor: "black" }}
-                  startIcon={<LoginIcon />}
-                >
-                  Login
-                </Button>
-              </Link>
               <Link to="/cart">
                 <Button
                   variant="outlined"
@@ -192,6 +190,15 @@ function ResponsiveAppBar({ cartItemCount }) {
                   startIcon={<ShoppingCartOutlinedIcon />}
                 >
                   Cart ({cartItemCount})
+                </Button>
+              </Link>
+              <Link to="/login">
+                <Button
+                  variant="outlined"
+                  sx={{ color: "black", borderColor: "black" }}
+                  startIcon={<LoginIcon />}
+                >
+                  Login
                 </Button>
               </Link>
             </Stack>
