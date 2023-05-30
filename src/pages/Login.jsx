@@ -61,8 +61,11 @@ export default function SignIn() {
         const decoded = jwt_decode(data.token);
         // Access the decoded data
         console.log(decoded);
+
+        localStorage.setItem("x-auth-token", data.token);
+
         if (decoded.isAdmin) {
-          navigates("/cart");
+          navigates("/admin/addproduct");
         } else {
           navigates("/");
         }

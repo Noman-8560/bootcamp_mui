@@ -71,23 +71,23 @@ export default function Album({ products, onAddToCart }) {
                         flexDirection: "column",
                       }}
                     >
-                      <CardMedia
+                      {/* <CardMedia
                         component="div"
                         sx={{
                           // 16:9
                           pt: "56.25%",
-                        }}
-                        image={product.imgs}
-                      />
+                        }} */}
+                        <img src={`http://localhost:8080/${product.image}`} style={{ height: "18rem" }} alt="" />
+                        
                       <CardContent sx={{ flexGrow: 1 }}>
                         <Typography gutterBottom variant="h5" component="h2">
                           {product.title}
                         </Typography>
                         <Typography gutterBottom>{product.price}</Typography>
-                        <Typography>{product.content}</Typography>
+                        <Typography>{product.description}</Typography>
                       </CardContent>
                       <CardActions sx={{ justifyContent: "center", mb: "5px" }}>
-                        <Link to="/details">
+                        {/* <Link to="/details">
                           <Button
                             variant="outlined"
                             sx={{ color: "black", borderColor: "black" }}
@@ -97,7 +97,7 @@ export default function Album({ products, onAddToCart }) {
                           >
                             Details
                           </Button>
-                        </Link>
+                        </Link> */}
                         
                         <Button
                           variant="outlined"

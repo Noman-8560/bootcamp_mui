@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -18,23 +18,33 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { Link, useNavigate } from "react-router-dom";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
+
 
 const drawerWidth = 240;
 
 const pages = [
-  <Link to="/admin/addproduct" style={{ textDecoration: "none", color: "black" }}>
+  <Link
+    to="/admin/addproduct"
+    style={{ textDecoration: "none", color: "black" }}
+  >
     Add Product
   </Link>,
-  <Link to="/admin/allproduct" style={{ textDecoration: "none", color: "black" }}>
+  <Link
+    to="/admin/allproduct"
+    style={{ textDecoration: "none", color: "black" }}
+  >
     All Product
   </Link>,
-  <Link to="/contact" style={{ textDecoration: "none", color: "black" }}>
+  <Link to="/" style={{ textDecoration: "none", color: "black" }}>
     Logout
   </Link>,
 ];
@@ -104,16 +114,10 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-const defaultTheme = createTheme();
-
-export default function Admins() {
+export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState(null);
-  const navigates = useNavigate();
+  const [products, setProducts] = useState([]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -123,34 +127,23 @@ export default function Admins() {
     setOpen(false);
   };
 
-  const PostProduct = async (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("x-auth-token");
-    const formData = new FormData();
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("/api/products");
+        const data = await response.json();
+        if (response.ok) {
+          setProducts(data.products);
+        } else {
+          console.error("Error fetching products:", data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
-    formData.append("title", title);
-    formData.append("price", price);
-    formData.append("description", description);
-    formData.append("image", image); 
-    console.log("Token");
-    console.log(token);
-    const res = await fetch("/api/products", {
-        method: "POST",
-        headers: {
-          "x-auth-token": token,
-        },
-        body: formData,
-      });
-    const data = await res.json();
-    if (data.status === 400 || !data) {
-      window.alert("Invalid Product");
-      console.log("data not found");
-    } else {
-      window.alert("Product Addded Successfully");
-      console.log("ok");
-      navigates("/admin/allproduct");
-    }
-  };
+    fetchProducts();
+  }, []);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -214,85 +207,34 @@ export default function Admins() {
           ))}
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <ThemeProvider theme={defaultTheme}>
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography component="h1" variant="h5">
-                Add Product
-              </Typography>
-              <Box component="form" noValidate method="POST" sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="title"
-                      label="Product Name"
-                      name="title"
-                      autoComplete="family-name"
-                      onChange={(e) => setTitle(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="price"
-                      label="Product Price"
-                      name="price"
-                      type="number"
-                      autoComplete="email"
-                      onChange={(e) => setPrice(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      name="image"
-                      type="file"
-                      id="image"
-                      autoComplete="new-password"
-                      onChange={(e) => setImage(e.target.files[0])}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      multiline
-                      rows={5}
-                      id="description"
-                      label="Product Description"
-                      name="description"
-                      autoComplete="family-name"
-                      onChange={(e) => setDescription(e.target.value)}
-                    />
-                  </Grid>
-                </Grid>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  onClick={PostProduct}
-                >
-                  Add Product
-                </Button>
-              </Box>
-            </Box>
-          </Container>
-        </ThemeProvider>
-      </Box>
+      <Container>
+        <TableContainer component={Paper} style={{ marginTop: "3rem" }}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Produt Image</TableCell>
+                <TableCell>Produt Name</TableCell>
+                <TableCell>Price</TableCell>
+                <TableCell>Description</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {products.map((product, index) =>
+                
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                      <img src={`http://localhost:8080/${product.image}`} style={{ height: "50px" }} alt="" />
+                    </TableCell>
+                    <TableCell>{product.title}</TableCell>
+                    <TableCell>{product.price}</TableCell>
+                    <TableCell>{product.description}</TableCell>
+                  </TableRow>
+                
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
     </Box>
   );
 }
