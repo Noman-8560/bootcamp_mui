@@ -10,12 +10,14 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart({ items, onAdd, onRemove }) {
   const [show, setShow] = useState(false);
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [orderId, setOrderId] = useState(false);
+  const navigates = useNavigate();
 
   const calculateTotalCost = () => {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -47,11 +49,14 @@ export default function Cart({ items, onAdd, onRemove }) {
     return action.order.capture().then(function (details) {
       const { payer } = details;
       setSuccess(true);
+      navigates("/")
+
     });
   };
 
   const onError = (data, actions) => {
     setErrorMessage("An Error Accured");
+    navigates("/cart")
   };
 
   return (
@@ -97,27 +102,30 @@ export default function Cart({ items, onAdd, onRemove }) {
               )}
             </TableBody>
           </Table>
-          <Box sx={{ textAlign: "center", m: 1, fontWeight: "bold" }}>
-            Total cost: ${calculateTotalCost()}
+          <Box
+            sx={{
+              marginTop: "1rem",
+              marginBottom: "1rem",
+              textAlign: "center",
+            }}
+          >
+            <Button
+              variant="outlined"
+              sx={{ color: "black", borderColor: "black", marginLeft: "2px" }}
+              onClick={() => setShow(true)}
+              type="submit"
+            >
+              Checkout ${calculateTotalCost()}{" "}
+            </Button>
           </Box>
         </TableContainer>
-        <Box sx={{marginTop:'1rem', marginBottom:'1rem',textAlign:'center'}}>
-        <Button
-          variant="outlined"
-          sx={{ color: "black", borderColor: "black", marginLeft: "2px" }}
-          onClick={() => setShow(true)}
-          type="submit"
-        >
-          Checkout ${calculateTotalCost()}{" "}
-        </Button>
-        </Box>
+        <br />
         {show ? (
           <PayPalButtons
             style={{ layout: "vertical" }}
             createOrder={createOrder}
             onApprove={onApprove}
             onError={onError}
-          
           />
         ) : null}
       </PayPalScriptProvider>
